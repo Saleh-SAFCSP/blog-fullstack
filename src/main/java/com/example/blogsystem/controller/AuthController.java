@@ -29,8 +29,6 @@ public class AuthController {
         String hashedPassword=new BCryptPasswordEncoder().encode(registerForm.getPassword());
         registerForm.setPassword(hashedPassword);
         User user=new User(null,registerForm.getUsername(),registerForm.getPassword(),registerForm.getRole());
-        user.setRole("USER");
-        System.out.println("wqfiwhsaf");
         User newUser=userRepository.save(user);
         if(registerForm.getRole().equals("ADMIN")){
             AdminBlog adminBlog=new AdminBlog(null,registerForm.getFullName(),registerForm.getLocation(),newUser.getId());
